@@ -3,7 +3,7 @@ package com.nolia.flipclockview
 import android.content.res.Resources
 import android.util.TypedValue
 
-internal interface ResourceUtils {
+internal interface ResourceHelper {
 
     val res: Resources
 

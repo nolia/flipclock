@@ -18,44 +18,33 @@ private const val FLAG_MM = 0b10
 private const val FLAG_HH = 0b100
 private const val STYLE_HH_MM_SS = FLAG_HH or FLAG_MM or FLAG_SS
 
-class FlipClockView @JvmOverloads constructor(
+open class FlipClockView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr),
-    ResourceUtils {
+    ResourceHelper {
+
+    protected val hourView: FlipTextView
+    protected val minuteView: FlipTextView
+    protected val secondView: FlipTextView
+    protected var dividerHoursMinutes: TextView
+    protected var dividerMinutesSeconds: TextView
+
+    private var isTicking: Boolean = false
 
     var flipClockType: Int = STYLE_HH_MM_SS
         set(value) {
             field = value
-
-            val hoursVisible = value and FLAG_HH != 0
-            val minutesVisible = value and FLAG_MM != 0
-            val secondsVisible = value and FLAG_SS != 0
-
-            hourView.visibility = if (hoursVisible) View.VISIBLE else View.GONE
-
-            dividerHoursMinutes.visibility = if (hoursVisible && minutesVisible) View.VISIBLE else View.GONE
-            minuteView.visibility = if (minutesVisible) View.VISIBLE else View.GONE
-
-            dividerMinutesSeconds.visibility = if (minutesVisible && secondsVisible) View.VISIBLE else View.GONE
-            secondView.visibility = if (secondsVisible) View.VISIBLE else View.GONE
+            updateChildVisibility(value)
         }
-
-
-    private val hourView: FlipTextView
-    private val minuteView: FlipTextView
-    private val secondView: FlipTextView
-    private var dividerHoursMinutes: TextView
-    private var dividerMinutesSeconds: TextView
-
-    private var isTicking: Boolean = false
 
     override val res: Resources
         get() = resources
 
     init {
         orientation = HORIZONTAL
+        @Suppress("LeakingThis")
         LayoutInflater.from(context).inflate(R.layout.merge_flip_clock, this, true)
 
         hourView = findViewById(R.id.flipHourView)
@@ -126,16 +115,36 @@ class FlipClockView @JvmOverloads constructor(
         }
     }
 
+    private fun updateChildVisibility(value: Int) {
+        val hoursVisible = value and FLAG_HH != 0
+        val minutesVisible = value and FLAG_MM != 0
+        val secondsVisible = value and FLAG_SS != 0
+
+        hourView.visibility = if (hoursVisible) View.VISIBLE else View.GONE
+
+        dividerHoursMinutes.visibility = if (hoursVisible && minutesVisible) View.VISIBLE else View.GONE
+        minuteView.visibility = if (minutesVisible) View.VISIBLE else View.GONE
+
+        dividerMinutesSeconds.visibility = if (minutesVisible && secondsVisible) View.VISIBLE else View.GONE
+        secondView.visibility = if (secondsVisible) View.VISIBLE else View.GONE
+    }
+
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         isTicking = true
         tick()
     }
 
-    private fun tick() {
+    protected fun tick() {
         if (!isTicking) {
             return
         }
+        onUpdateText()
+
+        postDelayed({ tick() }, 1000L)
+    }
+
+    protected open fun onUpdateText() {
         val now = Calendar.getInstance()
 
         val hourText = "%02d".format(now.get(Calendar.HOUR_OF_DAY))
@@ -145,11 +154,9 @@ class FlipClockView @JvmOverloads constructor(
         updateText(hourView, hourText)
         updateText(minuteView, minuteText)
         updateText(secondView, secondText)
-
-        postDelayed({ tick() }, 1000L)
     }
 
-    private fun updateText(flipTextView: FlipTextView, text: String) {
+    protected fun updateText(flipTextView: FlipTextView, text: String) {
         if (flipTextView.text != text) flipTextView.text = text
     }
 

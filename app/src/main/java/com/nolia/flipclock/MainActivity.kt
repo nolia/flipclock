@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
                 flipText.text = "$counter"
             }
         }
-        flipText.text = "${counter}"
+        flipText.text = "$counter"
+
+        countdown.deadlineTime = System.currentTimeMillis() + 10 * 60 * 1000
     }
 }

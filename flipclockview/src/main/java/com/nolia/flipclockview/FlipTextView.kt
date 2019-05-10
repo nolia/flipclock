@@ -18,7 +18,7 @@ class FlipTextView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr),
-    ResourceUtils {
+    ResourceHelper {
 
     private val camera = Camera()
     private val cameraMatrix = Matrix()
