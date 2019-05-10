@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+    <com.nolia.flipclockview.FlipTextView
+            android:id="@+id/flipHourView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:flip_textSize="40sp"
+            tools:flip_text="59"
+            app:flip_textFont="@font/roboto_mono"
+            />
+
+    <TextView
+            android:id="@+id/dividerHM"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:text=":"
+            android:gravity="center"
+            android:textSize="40sp"
+            />
+
+    <com.nolia.flipclockview.FlipTextView
+            android:id="@+id/flipMinuteView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:flip_textSize="40sp"
+            tools:flip_text="59"
+            app:flip_textFont="@font/roboto_mono"
+            />
+
+    <TextView
+            android:id="@+id/dividerMS"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:text=":"
+            android:gravity="center"
+            android:textSize="40sp"
+            />
+
+    <com.nolia.flipclockview.FlipTextView
+            android:id="@+id/flipSecondView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:flip_textSize="40sp"
+            tools:flip_text="59"
+            app:flip_textFont="@font/roboto_mono"
+            />
+
+
+</merge>

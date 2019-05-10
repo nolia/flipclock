@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlipTextView">
+        <attr name="flip_text" format="string"/>
+        <attr name="flip_textColor" format="color"/>
+        <attr name="flip_textSize" format="dimension"/>
+        <attr name="flip_textFont" format="reference"/>
+        <attr name="flip_animationDuration" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="FlipClockView">
+        <attr name="flip_type" format="enum">
+            <enum name="hh_mm_ss" value="7"/>
+            <enum name="hh_mm" value="6"/>
+            <enum name="mm_ss" value="3"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

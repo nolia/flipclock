@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="flip_background">#FAFAFA</color>
+    <color name="flip_gradient_end">#05000000</color>
+    <color name="flip_gradient_start">#00000000</color>
+
+</resources>

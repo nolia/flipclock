@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="flip_background">#FAFAFA</color>
+    <color name="flip_gradient_end">#05000000</color>
+    <color name="flip_gradient_start">#00000000</color>
+
+</resources>
